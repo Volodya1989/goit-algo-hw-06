@@ -17,7 +17,7 @@ class Record:
         else:
             raise ValueError("Phone number not found!")
 
-    def edit_phone(self, old_phone_number, new_phone_number):
+    def edit_phone(self, new_phone_number, old_phone_number):
         phone_to_edit = self.find_phone(old_phone_number)
         if phone_to_edit:
             self.remove_phone(old_phone_number)
