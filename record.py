@@ -17,13 +17,26 @@ class Record:
         else:
             raise ValueError("Phone number not found!")
 
-    def edit_phone(self, new_phone_number, old_phone_number):
+    def edit_phone(self, old_phone_number, new_phone_number):
         phone_to_edit = self.find_phone(old_phone_number)
-        if phone_to_edit:
-            self.remove_phone(old_phone_number)
-            self.add_phone(new_phone_number)
-        else:
+        if not phone_to_edit:
             raise ValueError(f"Phone number {old_phone_number} not found.")
+
+        new_phone = Phone(new_phone_number) 
+        self.remove_phone(old_phone_number)
+        self.phones.append(new_phone)
+
+
+def edit_phone(self, old_phone_number, new_phone_number):
+    phone_to_edit = self.find_phone(old_phone_number)
+    if not phone_to_edit:
+        raise ValueError(f"Phone number {old_phone_number} not found.")
+
+    try:
+        # Перевіримо, чи новий номер валідний
+        Phone(new_phone_number)
+    except ValueError as e:
+        raise ValueError(f"New phone number is invalid: {e}")
 
     def find_phone(self, phone):
         return next((p for p in self.phones if p.value == phone), None)
